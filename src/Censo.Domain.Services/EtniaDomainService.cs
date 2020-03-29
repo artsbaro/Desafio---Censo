@@ -1,0 +1,46 @@
+﻿using Censo.Domain.Interfaces.Repositories;
+using Censo.Domain.Services.Interfaces;
+using Censo.Domain.Types;
+using System.Collections.Generic;
+using System.Transactions;
+
+namespace Censo.Domain.Services
+{
+    public class EtniaDomainService : IEtniaDomainService
+    {
+        private readonly IEtniaRepository  _EtniaRepository;
+
+        public EtniaDomainService( IEtniaRepository EtniaRepository)
+        {
+            _EtniaRepository = EtniaRepository;
+        }
+
+        public void Create(Etnia entity)
+        {
+            using (var trans = new TransactionScope())
+            {
+                _EtniaRepository.Create(entity);
+                trans.Complete();
+            }
+        }
+
+        public Etnia FindById(byte id)
+        {
+            return _EtniaRepository.FindById(id);
+        }
+
+        public IEnumerable<Etnia> List()
+        {
+            return _EtniaRepository.List();
+        }
+
+        public void Update(Etnia entity)
+        {
+            using (var trans = new TransactionScope())
+            {
+                _EtniaRepository.Update(entity);
+                trans.Complete();
+            }
+        }
+    }
+}
