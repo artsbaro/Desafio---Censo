@@ -30,7 +30,7 @@ namespace Censo.Services.Api
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:4200",
+                    builder.WithOrigins("http://localhost:4200", 
                                         "http://www.contoso.com");
                 });
             });
