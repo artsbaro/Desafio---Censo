@@ -48,20 +48,6 @@ namespace Censo.Infra.Data.Repository
            );
         }
 
-        //public void Remove(byte id)
-        //{
-        //    throw new NotImplementedException();
-
-        //    //Connection.Execute(
-        //    //    "SProc_Etnia_Delete",
-        //    //    commandType: CommandType.StoredProcedure,
-        //    //    param: new
-        //    //    {
-        //    //        Id = id
-        //    //    }
-        //    //);
-        //}
-
         public void Update(Etnia entity)
         {
             Connection.Execute(
