@@ -1,14 +1,14 @@
 ﻿CREATE PROCEDURE SProc_Pessoa_Insert
 (
-    @Id             uniqueidentifier NOT NULL,
-    @Nome           varchar(100) NOT NULL ,
-    @SobreNome      varchar(100) NOT NULL,
-    @MaeId          uniqueidentifier NULL,
-    @PaiId          uniqueidentifier NULL,
-    @GeneroId       tinyint NULL,
-    @EtniaId        tinyint NULL,
-    @EscolaridadeId tinyint NULL,
-	@DataCadastro   datetime NOT NULL
+    @Id             uniqueidentifier ,
+    @Nome           varchar(100)  ,
+    @SobreNome      varchar(100) ,
+    @MaeId          uniqueidentifier ,
+    @PaiId          uniqueidentifier ,
+    @GeneroId       tinyint ,
+    @EtniaId        tinyint ,
+    @EscolaridadeId tinyint ,
+	@DataCadastro   datetime 
 )
 As
 
