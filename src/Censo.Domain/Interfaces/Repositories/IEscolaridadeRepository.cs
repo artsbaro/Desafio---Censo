@@ -6,7 +6,7 @@ namespace Censo.Domain.Interfaces.Repositories
 {
     public interface IEscolaridadeRepository : IRepository
     {
-        void Create(Escolaridade entity);
+        byte Create(Escolaridade entity);
         IEnumerable<Escolaridade> List();
         Escolaridade FindById(byte id);
         void Update(Escolaridade entity);

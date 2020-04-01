@@ -20,8 +20,7 @@ namespace Censo.Application.Services
         public byte Create(EtniaInsertDto entity)
         {
             var objPersistencia = TypeConverter.ConvertTo<Etnia>(entity);
-            _service.Create(objPersistencia);
-            return objPersistencia.Id;
+            return _service.Create(objPersistencia);
         }
 
         public IEnumerable<EtniaDto> List()

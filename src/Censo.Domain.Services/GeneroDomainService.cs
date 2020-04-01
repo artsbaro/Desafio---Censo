@@ -15,12 +15,13 @@ namespace Censo.Domain.Services
             _GeneroRepository = GeneroRepository;
         }
 
-        public void Create(Genero entity)
+        public byte Create(Genero entity)
         {
             using (var trans = new TransactionScope())
             {
-                _GeneroRepository.Create(entity);
+                var id =_GeneroRepository.Create(entity);
                 trans.Complete();
+                return id;
             }
         }
 

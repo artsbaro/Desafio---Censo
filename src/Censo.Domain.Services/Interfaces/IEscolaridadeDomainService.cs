@@ -5,7 +5,7 @@ namespace Censo.Domain.Services.Interfaces
 {
     public interface IEscolaridadeDomainService
     {
-        void Create(Escolaridade entity);
+        byte Create(Escolaridade entity);
         void Update(Escolaridade entity);
         IEnumerable<Escolaridade> List();
         Escolaridade FindById(byte id);

@@ -5,7 +5,7 @@ namespace Censo.Domain.Interfaces.Repositories
 {
     public interface IEtniaRepository : IRepository
     {
-        void Create(Etnia entity);
+        byte Create(Etnia entity);
         IEnumerable<Etnia> List();
         Etnia FindById(byte id);
 

@@ -15,12 +15,13 @@ namespace Censo.Domain.Services
             _EscolaridadeRepository = escolaridadeRepository;
         }
 
-        public void Create(Escolaridade entity)
+        public byte Create(Escolaridade entity)
         {
             using (var trans = new TransactionScope())
             {
-                _EscolaridadeRepository.Create(entity);
+                var id = _EscolaridadeRepository.Create(entity);
                 trans.Complete();
+                return id;
             }
         }
 

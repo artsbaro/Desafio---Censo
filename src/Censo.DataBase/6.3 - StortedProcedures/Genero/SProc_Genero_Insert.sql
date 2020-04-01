@@ -1,13 +1,12 @@
 ﻿CREATE PROCEDURE SProc_Genero_Insert
 (
-    @Id tinyint,
-	@Nome varchar(128)
+	@Descricao varchar(128)
 )
 As
 
 INSERT INTO [dbo].[tblGeneros]
-           (    [Id],
-                [Nome])
+           ([Descricao])
      VALUES
-           (    @Id,
-				@Nome )
+           (@Descricao )
+
+Select Id = SCOPE_IDENTITY()

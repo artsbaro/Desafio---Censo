@@ -14,17 +14,18 @@ namespace Censo.Infra.Data.Repository
         {
         }
 
-        public void Create(Etnia entity)
+        public byte Create(Etnia entity)
         {
-            Connection.Execute(
+            var id =  Connection.QuerySingle<byte>(
                 "SProc_Etnia_Insert",
                 commandType: CommandType.StoredProcedure,
                 param: new
                 {
-                    entity.Id,
                     entity.Descricao
                 }
             );
+
+            return id;
         }
 
 

@@ -15,12 +15,13 @@ namespace Censo.Domain.Services
             _EtniaRepository = EtniaRepository;
         }
 
-        public void Create(Etnia entity)
+        public byte Create(Etnia entity)
         {
             using (var trans = new TransactionScope())
             {
-                _EtniaRepository.Create(entity);
+                var id =_EtniaRepository.Create(entity);
                 trans.Complete();
+                return id;
             }
         }
 

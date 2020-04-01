@@ -35,16 +35,16 @@ namespace Censo.Infra.Data.Repository
 
 
 
-        public void SetTransaction(IDbTransaction transaction)
-        {
-            this.transaction = transaction;
-            connection = transaction.Connection;
-        }
+        //public void SetTransaction(IDbTransaction transaction)
+        //{
+        //    this.transaction = transaction;
+        //    connection = transaction.Connection;
+        //}
 
-        internal void SetConnection(IDbConnection connection)
-        {
-            this.connection = connection;
-            transaction = null;
-        }
+        //internal void SetConnection(IDbConnection connection)
+        //{
+        //    this.connection = connection;
+        //    transaction = null;
+        //}
     }
 }

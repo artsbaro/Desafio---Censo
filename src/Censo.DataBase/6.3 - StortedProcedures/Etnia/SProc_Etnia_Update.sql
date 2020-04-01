@@ -1,11 +1,11 @@
-﻿CREATE PROCEDURE SProc_Item_Update
+﻿CREATE PROCEDURE SProc_Etnia_Update
 (
     @Id tinyint,
-	@Nome varchar(128)
+	@Descricao varchar(128)
 )
 As
 
 
 UPDATE  tblEtnias   SET 
-        Nome	= @Nome
+        Descricao	= @Descricao
 WHERE   Id = @Id

@@ -6,7 +6,7 @@ As
   
  SELECT 
 		E.Id,
-        E.Nome
+        E.Descricao
  FROM	dbo.tblEtnias E(nolock) 
  Where	E.Id = @Id  
  

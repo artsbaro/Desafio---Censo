@@ -6,7 +6,7 @@ As
   
  SELECT 
 		Id,
-        Nome
+        Descricao
  FROM	dbo.tblGeneros (nolock) 
  Where	Id = @Id  
  

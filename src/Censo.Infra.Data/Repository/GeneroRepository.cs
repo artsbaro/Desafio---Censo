@@ -1,7 +1,6 @@
 ﻿using Censo.Domain.Interfaces.Repositories;
 using Dapper;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using Censo.Domain.Types;
@@ -14,17 +13,17 @@ namespace Censo.Infra.Data.Repository
         {
         }
 
-        public void Create(Genero entity)
+        public byte Create(Genero entity)
         {
-            Connection.Execute(
+            var id = Connection.QuerySingle<byte>(
                 "SProc_Genero_Insert",
                 commandType: CommandType.StoredProcedure,
                 param: new
                 {
-                    entity.Id,
                     entity.Descricao
                 }
             );
+            return id;
         }
 
 

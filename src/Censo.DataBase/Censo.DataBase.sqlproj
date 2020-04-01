@@ -78,12 +78,12 @@
     <Build Include="6.3 - StortedProcedures\Etnia\SProc_Etnia_GetById.sql" />
     <Build Include="6.1 - Tables\tblEtnias.sql" />
     <Build Include="6.1 - Tables\tblEscolaridades.sql" />
-    <Build Include="6.3 - StortedProcedures\Etnia\SProc_Etnia_GetByAll.sql" />
-    <Build Include="6.3 - StortedProcedures\Escolaridade\SProc_Escolaridade_GetByAll.sql" />
+    <Build Include="6.3 - StortedProcedures\Etnia\SProc_Etnia_GetAll.sql" />
+    <Build Include="6.3 - StortedProcedures\Escolaridade\SProc_Escolaridade_GetAll.sql" />
     <Build Include="6.3 - StortedProcedures\Escolaridade\SProc_Escolaridade_GetById.sql" />
     <Build Include="6.3 - StortedProcedures\Escolaridade\SProc_Escolaridade_Insert.sql" />
     <Build Include="6.3 - StortedProcedures\Escolaridade\SProc_Escolaridade_Update.sql" />
-    <Build Include="6.3 - StortedProcedures\Genero\SProc_Genero_GetByAll.sql" />
+    <Build Include="6.3 - StortedProcedures\Genero\SProc_Genero_GetAll.sql" />
     <Build Include="6.3 - StortedProcedures\Genero\SProc_Genero_GetById.sql" />
     <Build Include="6.3 - StortedProcedures\Genero\SProc_Genero_Insert.sql" />
     <Build Include="6.3 - StortedProcedures\Genero\SProc_Genero_Update.sql" />
