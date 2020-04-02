@@ -68,11 +68,27 @@ namespace Censo.Services.Api.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("")]
         [ProducesResponseType(typeof(IEnumerable<PessoaDto>), 200)]
         [ProducesResponseType(500)]
-        public IActionResult Find([FromQuery] PessoaFilter filter)
+        public IActionResult Find([FromQuery] string nome, 
+                                  [FromQuery] string sobreNome,
+                                  [FromQuery] string nomeDaMae,
+                                  [FromQuery] string nomeDoPai,
+                                  [FromQuery] byte? generoId,
+                                  [FromQuery] byte? escolaridadeId,
+                                  [FromQuery] byte? etniaId)
         {
+            var filter = new PessoaFilter { 
+                Nome = nome,
+                SobreNome = sobreNome,
+                NomeDaMae = nomeDaMae,
+                NomeDoPai = nomeDoPai,
+                EscolaridadeId  =escolaridadeId,
+                EtniaId = etniaId,
+                GeneroId = generoId
+            };
+
             try
             {
                 var result = _service.List(filter);

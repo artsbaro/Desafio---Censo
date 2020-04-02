@@ -17,10 +17,10 @@ namespace Censo.Application.Mappers.Pessoas
                 Escolaridade = new Escolaridade { Id = source.EscolaridadeId },
                 Genero = new Genero { Id = source.GeneroId },
                 Etnia = new Etnia { Id = source.EtniaId },
-                Filiacao = new Filiacao
+                Filiacao = source.Filiacao == null ? new Filiacao() : new Filiacao
                 {
-                    Mae = new Pessoa { Id = source.Filiacao.MaeId },
-                    Pai = new Pessoa { Id = source.Filiacao.PaiId }
+                    Mae = new Pessoa { Id = source.Filiacao.MaeId.Value },
+                    Pai = new Pessoa { Id = source.Filiacao.PaiId.Value }
                 }
             };
         }
