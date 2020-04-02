@@ -27,11 +27,12 @@ namespace Censo.Infra.Data.Repository
                     entity.Id,
                     entity.Nome,
                     entity.SobreNome,
-                    MaeId = entity.Filiacao.Mae.Id,
-                    PaiId = entity.Filiacao.Pai.Id,
+                    MaeId = entity.Filiacao?.Mae?.Id,
+                    PaiId = entity.Filiacao?.Pai?.Id,
                     GeneroId = entity.Genero.Id,
                     EscolaridadeId = entity.Escolaridade.Id,
-                    EtniaId = entity.Etnia.Id
+                    EtniaId = entity.Etnia.Id,
+                    entity.DataCadastro
                 }
             );
         }
@@ -62,9 +63,18 @@ namespace Censo.Infra.Data.Repository
 
         public IEnumerable<Pessoa> List(PessoaFilter filter)
         {
-            var result = Connection.Query(
-           "SProc_Pessoa_GetByFilter",
-           commandType: CommandType.StoredProcedure);
+            var result = Connection.Query("SProc_Pessoa_GetByFilter",
+           commandType: CommandType.StoredProcedure,
+           param: new
+           {
+               filter.Nome,
+               filter.SobreNome,
+               filter.NomeDaMae,
+               filter.NomeDoPai,
+               filter.GeneroId,
+               filter.EtniaId,
+               filter.EscolaridadeId
+           });
 
             return MapFromDB(result);
         }

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[SProc_Receita_GetById]  
+﻿CREATE PROCEDURE [dbo].[SProc_Pessoa_GetById]  
 (  
 	@Id uniqueidentifier  
 )  
@@ -17,8 +17,8 @@ SELECT
 		,P.[EscolaridadeId]
 		,P.[DataCadastro]
 FROM    dbo.tblPessoas P (nolock) 
-JOIN	dbo.tblPessoas MAE (nolock) On MAE.Id = P.MaeId
-JOIN	dbo.tblPessoas PAI (nolock) On PAI.Id = P.PaiId
+LEFT JOIN	dbo.tblPessoas MAE (nolock) On MAE.Id = P.MaeId
+LEFT JOIN	dbo.tblPessoas PAI (nolock) On PAI.Id = P.PaiId
 JOIN    dbo.tblGeneros G (nolock) On G.Id = P.GeneroId
 JOIN    dbo.tblEscolaridades E (nolock) On E.Id = P.EtniaId
 JOIN    dbo.tblEscolaridades ESC (nolock) On ESC.Id = P.EscolaridadeId

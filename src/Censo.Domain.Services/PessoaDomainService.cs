@@ -20,7 +20,6 @@ namespace Censo.Domain.Services
 
         public void Create(Pessoa entity)
         {
-
             using (var trans = new TransactionScope())
             {
                 _pessoaRepository.Create(entity);
