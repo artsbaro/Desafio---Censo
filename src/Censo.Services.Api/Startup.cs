@@ -72,17 +72,16 @@ namespace Censo.Services.Api
         {
             if (env.IsDevelopment())
             {
+                //Ativa o Swagger
+                app.UseSwagger();
+
+                // Ativa o Swagger UI
+                app.UseSwaggerUI(opt =>
+                {
+                    opt.SwaggerEndpoint("/swagger/v1/swagger.json", "Censo Project V1");
+                });
                 app.UseDeveloperExceptionPage();
             }
-
-            //Ativa o Swagger
-            app.UseSwagger();
-
-            // Ativa o Swagger UI
-            app.UseSwaggerUI(opt =>
-            {
-                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "Censo Project V1");
-            });
 
             app.UseResponseCompression();
             app.UseCors(MyAllowSpecificOrigins);
