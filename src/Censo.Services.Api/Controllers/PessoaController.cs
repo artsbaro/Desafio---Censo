@@ -5,6 +5,7 @@ using Censo.Application.Interfaces;
 using Censo.Domain.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Censo.Application.Dtos.Pessoa;
+using Censo.Domain.Entities;
 
 namespace Censo.Services.Api.Controllers
 {
@@ -107,7 +108,6 @@ namespace Censo.Services.Api.Controllers
         [ProducesResponseType(typeof(PessoaDto), 200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        [Consumes("application/json")]
         public IActionResult Find(Guid id)
         {
             try
@@ -139,6 +139,27 @@ namespace Censo.Services.Api.Controllers
 
                 var result = _service.GetPercentPersonWhitNameByRegion(regiao, nome);
                 return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+        [HttpGet("GetGenealogy/{id}/{level}")]
+        [ProducesResponseType(typeof(Pessoa), 200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public IActionResult Find(Guid id, byte level)
+        {
+            try
+            {
+                return Ok(_service.GetGenealogy(id, level));
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(new Error(ex));
             }
             catch (Exception ex)
             {

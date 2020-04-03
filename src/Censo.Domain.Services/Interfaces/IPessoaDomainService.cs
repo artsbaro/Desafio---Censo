@@ -15,5 +15,7 @@ namespace Censo.Domain.Services.Interfaces
         IEnumerable<Pessoa> ListChildren(Guid idParent);
 
         decimal GetPercentPersonWhitNameByRegion(string region, string name);
+
+        Pessoa GetGenealogy(Guid id, byte level);
     }
 }
