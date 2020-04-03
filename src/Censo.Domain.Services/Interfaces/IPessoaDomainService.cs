@@ -12,5 +12,8 @@ namespace Censo.Domain.Services.Interfaces
         void Remove(Guid id);
         IEnumerable<Pessoa> List(PessoaFilter filter);
         Pessoa FindById(Guid id);
+        IEnumerable<Pessoa> ListChildren(Guid idParent);
+
+        decimal GetPercentPersonWhitNameByRegion(string region, string name);
     }
 }

@@ -12,6 +12,7 @@ namespace Censo.Services.Api.Controllers
     [Produces("application/json")]
     [ApiController]
     public class PessoaController : ControllerBase
+
     {
         private readonly IPessoaService _service;
 
@@ -39,7 +40,7 @@ namespace Censo.Services.Api.Controllers
         [HttpPut]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]
-        public IActionResult Update([FromBody] PessoaDto item)
+        public IActionResult Update([FromBody] PessoaUpdateDto item)
         {
             try
             {
@@ -73,6 +74,7 @@ namespace Censo.Services.Api.Controllers
         [ProducesResponseType(500)]
         public IActionResult Find([FromQuery] string nome, 
                                   [FromQuery] string sobreNome,
+                                  [FromQuery] string regiao,
                                   [FromQuery] string nomeDaMae,
                                   [FromQuery] string nomeDoPai,
                                   [FromQuery] byte? generoId,
@@ -82,6 +84,7 @@ namespace Censo.Services.Api.Controllers
             var filter = new PessoaFilter { 
                 Nome = nome,
                 SobreNome = sobreNome,
+                Regiao = regiao,
                 NomeDaMae = nomeDaMae,
                 NomeDoPai = nomeDoPai,
                 EscolaridadeId  =escolaridadeId,
@@ -114,6 +117,28 @@ namespace Censo.Services.Api.Controllers
             catch (ArgumentException ex)
             {
                 return NotFound(new Error(ex));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("GetPercent/{regiao}/{nome}")]
+        [ProducesResponseType(typeof(IEnumerable<PessoaDto>), 200)]
+        [ProducesResponseType(500)]
+        public IActionResult GetPercent(string regiao, string nome)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(regiao))
+                    return BadRequest(regiao);
+
+                if (string.IsNullOrWhiteSpace(nome))
+                    return BadRequest(nome);
+
+                var result = _service.GetPercentPersonWhitNameByRegion(regiao, nome);
+                return Ok(result);
             }
             catch (Exception ex)
             {

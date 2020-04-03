@@ -2,6 +2,7 @@
 (
 	@Nome			varchar(100),
 	@SobreNome		varchar(100),
+    @Regiao 		varchar(100),
 	@NomeDaMae		varchar(100),
 	@NomeDoPai		varchar(100),
 	@GeneroId		tinyint,
@@ -14,6 +15,7 @@ SELECT
   P.[Id]   
   ,P.[Nome]   
   ,P.[SobreNome]   
+  ,P.Regiao
   ,P.[MaeId]   
   ,MAE.Nome as MaeNome  
   ,P.[PaiId]   
@@ -30,6 +32,7 @@ JOIN    dbo.tblEscolaridades E (nolock) On E.Id = P.EtniaId
 JOIN    dbo.tblEscolaridades ESC (nolock) On ESC.Id = P.EscolaridadeId  
 WHERE (@Nome IS NULL OR P.Nome = @Nome  )
 AND  (@SobreNome IS NULL OR P.SobreNome = @SobreNome  )
+AND  (@Regiao IS NULL OR P.Regiao = @Regiao  )
 AND  (@NomeDaMae IS NULL OR MAE.Nome = @NomeDaMae  )
 AND  (@NomeDoPai IS NULL OR PAI.Nome = @NomeDoPai  )
 AND  (@GeneroId IS NULL OR P.GeneroId = @GeneroId  )

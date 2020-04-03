@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using Censo.Application.Dtos.Pessoa;
 using Censo.Application.Interfaces;
-using Censo.Application.Mappers.Default;
 using Censo.Application.Mappers.Pessoas;
-using Censo.Domain.Entities;
 using Censo.Domain.Filters;
 using Censo.Domain.Services.Interfaces;
 
@@ -53,14 +51,20 @@ namespace Censo.Application.Services
             return _PessoaDtoMapper.Map(Pessoa);
         }
 
-        public void Update(PessoaDto entity)
+        public void Update(PessoaUpdateDto dto)
         {
-            _service.Update(TypeConverter.ConvertTo<Pessoa>(entity));
+            var pessoa = _PessoaMapper.Map(dto);
+            _service.Update(pessoa);
         }
 
         public void Dispose()
         {
             GC.SuppressFinalize(this);
+        }
+
+        public string GetPercentPersonWhitNameByRegion(string region, string name)
+        {
+            return $"{_service.GetPercentPersonWhitNameByRegion(region, name)} %";
         }
     }
 }

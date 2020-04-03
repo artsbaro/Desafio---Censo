@@ -3,6 +3,7 @@
     @Id             uniqueidentifier ,
     @Nome           varchar(100)  ,
     @SobreNome      varchar(100) ,
+    @Regiao         varchar(100) ,
     @MaeId          uniqueidentifier ,
     @PaiId          uniqueidentifier ,
     @GeneroId       tinyint ,
@@ -16,6 +17,7 @@ INSERT INTO [dbo].[tblPessoas]
            ( [Id] 
             ,[Nome] 
             ,[SobreNome] 
+            ,Regiao
             ,[MaeId] 
             ,[PaiId] 
             ,[GeneroId]
@@ -26,6 +28,7 @@ INSERT INTO [dbo].[tblPessoas]
            ( @Id
             ,@Nome 
             ,@SobreNome 
+            ,@Regiao
             ,@MaeId 
             ,@PaiId 
             ,@GeneroId

@@ -25,6 +25,7 @@ namespace Censo.Domain.Services
                 _pessoaRepository.Create(entity);
                 foreach (var item in entity.Filhos ?? Enumerable.Empty<Pessoa>())
                 {
+                    item.SetParent(entity);
                     _pessoaRepository.Create(item);
                 }
                 trans.Complete();
@@ -34,8 +35,13 @@ namespace Censo.Domain.Services
         public Pessoa FindById(Guid id)
         {
             var pessoa = _pessoaRepository.FindById(id);
-            //pessoa.Filhos = _pessoaRepository(receita.Id); Buscar Filhos da pessoa
+            pessoa.Filhos = _pessoaRepository.ListChildren(id);
             return pessoa;
+        }
+
+        public IEnumerable<Pessoa> ListChildren(Guid idParent)
+        {
+            return _pessoaRepository.ListChildren(idParent);            
         }
 
         public IEnumerable<Pessoa> List(PessoaFilter filter)
@@ -55,10 +61,16 @@ namespace Censo.Domain.Services
                 _pessoaRepository.Update(entity);
                 foreach (var item in entity.Filhos ?? Enumerable.Empty<Pessoa>())
                 {
-                    _pessoaRepository.Create(item);
+                    item.SetParent(entity);
+                    _pessoaRepository.Update(item);
                 }
                 trans.Complete();
             }
+        }
+
+        public decimal GetPercentPersonWhitNameByRegion(string region, string name)
+        {
+            return _pessoaRepository.GetPercentPersonWhitNameByRegion(region, name);
         }
     }
 }

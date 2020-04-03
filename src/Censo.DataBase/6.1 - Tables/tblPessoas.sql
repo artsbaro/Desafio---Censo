@@ -2,6 +2,7 @@
     [Id] uniqueidentifier NOT NULL,
     [Nome] varchar(100) NOT NULL DEFAULT '',
     [SobreNome] varchar(100) NOT NULL DEFAULT '',
+    [Regiao] varchar(100) NOT NULL DEFAULT '',
     [MaeId] uniqueidentifier NULL,
     [PaiId] uniqueidentifier NULL,
     [GeneroId] tinyint NULL,
