@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Censo.Application.Dtos.Pessoa;
 using Censo.Application.Interfaces;
 using Censo.Application.Mappers.Pessoas;
+using Censo.Domain.Entities;
 using Censo.Domain.Filters;
 using Censo.Domain.Services.Interfaces;
 
@@ -65,6 +66,14 @@ namespace Censo.Application.Services
         public string GetPercentPersonWhitNameByRegion(string region, string name)
         {
             return $"{_service.GetPercentPersonWhitNameByRegion(region, name)} %";
+        }
+
+        public Pessoa GetGenealogy(Guid id, byte level)
+        {
+            var pessoa = _service.GetGenealogy(id, level);
+            if (pessoa == null)
+                throw new ArgumentException("Pessoa não encontrada");
+            return pessoa;
         }
     }
 }

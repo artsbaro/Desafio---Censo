@@ -1,6 +1,7 @@
 ﻿using Censo.Domain.Enums;
 using Censo.Domain.Types;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Censo.Domain.Entities
 {
@@ -14,6 +15,22 @@ namespace Censo.Domain.Entities
         public Filiacao Filiacao { get; set; }
         public IEnumerable<Pessoa> Filhos { get; set; }
         public string Regiao { get; set; }
+
+        public bool HasChildren
+        {
+            get
+            {
+                if (Filhos == null)
+                    return false;
+
+                if (Filhos.Count() > 0)
+                    return true;
+
+                return false;
+                
+                //return Filhos?.ToList().Count > 0;
+            }
+        }
 
         public Pessoa()
         {

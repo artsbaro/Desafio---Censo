@@ -41,7 +41,7 @@ namespace Censo.Domain.Services
 
         public IEnumerable<Pessoa> ListChildren(Guid idParent)
         {
-            return _pessoaRepository.ListChildren(idParent);            
+            return _pessoaRepository.ListChildren(idParent);
         }
 
         public IEnumerable<Pessoa> List(PessoaFilter filter)
@@ -71,6 +71,31 @@ namespace Censo.Domain.Services
         public decimal GetPercentPersonWhitNameByRegion(string region, string name)
         {
             return _pessoaRepository.GetPercentPersonWhitNameByRegion(region, name);
+        }
+
+        public Pessoa GetGenealogy(Guid id, byte level)
+        {
+            var pessoa = FindById(id);
+            LoadGenealogy(pessoa, level);
+            return pessoa;
+        }
+
+        private void LoadGenealogy(Pessoa pessoa, byte level)
+        {
+            if (level == 0)
+                return;
+
+            if (pessoa.HasChildren)
+            {
+                List<Pessoa> pessoas = pessoa.Filhos.ToList();
+
+                for (int i = 0; i < pessoas.Count(); i++)
+                {
+                    pessoas[i] = FindById(pessoas[i].Id);
+                    pessoa.Filhos = pessoas;
+                    LoadGenealogy(pessoas[i], level--);
+                }
+            }
         }
     }
 }

@@ -33,6 +33,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Censo.Services.Api", "src\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Censo.Domain.Services", "src\Censo.Domain.Services\Censo.Domain.Services.csproj", "{363F7A4C-1840-4A03-B8B6-47B96A5CEE98}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7 - Tests", "7 - Tests", "{14869A22-16BD-4AFE-87F7-602579FF5DA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainUnitTest", "src\DomainUnitTest\DomainUnitTest.csproj", "{23AEB5C8-1819-41F5-8E9C-47E451D96F49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,10 @@ Global
 		{363F7A4C-1840-4A03-B8B6-47B96A5CEE98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{363F7A4C-1840-4A03-B8B6-47B96A5CEE98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{363F7A4C-1840-4A03-B8B6-47B96A5CEE98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23AEB5C8-1819-41F5-8E9C-47E451D96F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23AEB5C8-1819-41F5-8E9C-47E451D96F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23AEB5C8-1819-41F5-8E9C-47E451D96F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23AEB5C8-1819-41F5-8E9C-47E451D96F49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +91,7 @@ Global
 		{7D925591-DD5F-4631-80EB-E8F736F46DA6} = {C57E3B6C-1392-4D44-9F1F-B59F655363DE}
 		{0502ACBB-4ECF-4FC6-976D-1F4D640035D2} = {8E66963F-7763-4842-8104-82900E8DC413}
 		{363F7A4C-1840-4A03-B8B6-47B96A5CEE98} = {10F99368-4DC8-46E8-819E-2B03CAFB04BF}
+		{23AEB5C8-1819-41F5-8E9C-47E451D96F49} = {14869A22-16BD-4AFE-87F7-602579FF5DA1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9DD0472-EB5E-434B-BEC5-8C72763D9567}

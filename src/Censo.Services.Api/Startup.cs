@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Censo.Infra.CrossCutting.IoC;
 using Swashbuckle.AspNetCore.Swagger;
 using Newtonsoft.Json;
-
+using Microsoft.AspNetCore.ResponseCompression;
 
 namespace Censo.Services.Api
 {
@@ -30,6 +30,7 @@ namespace Censo.Services.Api
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
+                    // Add domain to use CORS
                     builder.WithOrigins("http://localhost:4200", 
                                         "http://www.contoso.com");
                 });
@@ -46,6 +47,11 @@ namespace Censo.Services.Api
                 { options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter()); })
                 .AddJsonOptions(options => options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.Configure<GzipCompressionProviderOptions>(
+                o => o.Level = System.IO.Compression.CompressionLevel.Fastest);
+            services.AddResponseCompression(
+                o => o.Providers.Add<GzipCompressionProvider>());
 
             services.AddSwaggerGen(s =>
             {
@@ -66,18 +72,18 @@ namespace Censo.Services.Api
         {
             if (env.IsDevelopment())
             {
+                //Ativa o Swagger
+                app.UseSwagger();
+
+                // Ativa o Swagger UI
+                app.UseSwaggerUI(opt =>
+                {
+                    opt.SwaggerEndpoint("/swagger/v1/swagger.json", "Censo Project V1");
+                });
                 app.UseDeveloperExceptionPage();
             }
 
-            //Ativa o Swagger
-            app.UseSwagger();
-
-            // Ativa o Swagger UI
-            app.UseSwaggerUI(opt =>
-            {
-                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "Censo Project V1");
-            });
-
+            app.UseResponseCompression();
             app.UseCors(MyAllowSpecificOrigins);
 
             app.UseMvc();
