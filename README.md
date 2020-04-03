@@ -7,6 +7,7 @@ Projeto de cadastro de pessoas e manipulação de filtros "dinamicos", estatíst
 Para executar o projeto você precisa:
 Clonar ou fazer um Fork do projeto disposto no Github; 
 Publicar o projeto de banco de dados para que seja criado o modelo do banco em um servidor de banco e dados a sua escolha;
+Executar o Visual Studio, IIS Express, com browser numa URL como http://localhost:52156/swagger
 
 ### Pre-requisitos
 * Visual Studio 2019
