@@ -27,6 +27,7 @@ namespace Censo.Infra.Data.Repository
                     entity.Id,
                     entity.Nome,
                     entity.SobreNome,
+                    entity.Regiao,
                     MaeId = entity.Filiacao?.Mae?.Id,
                     PaiId = entity.Filiacao?.Pai?.Id,
                     GeneroId = entity.Genero.Id,
@@ -69,6 +70,7 @@ namespace Censo.Infra.Data.Repository
            {
                filter.Nome,
                filter.SobreNome,
+               filter.Regiao,
                filter.NomeDaMae,
                filter.NomeDoPai,
                filter.GeneroId,
@@ -79,26 +81,47 @@ namespace Censo.Infra.Data.Repository
             return MapFromDB(result);
         }
 
+        public IEnumerable<Pessoa> ListChildren(Guid idParent)
+        {
+           var result = Connection.Query("SProc_Pessoa_GetByParentId",
+           commandType: CommandType.StoredProcedure,
+           param: new
+           {
+               idParent
+           });
+
+            return MapFromDB(result);
+        }
+
         public void Update(Pessoa entity)
         {
-            throw new NotImplementedException();
-            //Connection.Execute(
-            //    "SProc_Pessoa_Update",
-            //    commandType: CommandType.StoredProcedure,
-            //    param: new
-            //    {
-            //        entity.Id,
-            //        entity.Nome,
-            //        entity.SobreNome,
-            //        MaeId = entity.Filiacao.Mae.Id,
-            //        PaiId = entity.Filiacao.Pai.Id,
-            //        GeneroId = entity.Genero.Id,
-            //        EscolaridadeId = entity.Escolaridade.Id,
-            //        EtniaId = entity.Etnia.Id,
-            //        entity.DataCadastro
-            //    }
-            //);
+            Connection.Execute(
+                "SProc_Pessoa_Update",
+                commandType: CommandType.StoredProcedure,
+                param: new
+                {
+                    entity.Id,
+                    entity.Nome,
+                    entity.SobreNome,
+                    entity.Regiao,
+                    MaeId = entity.Filiacao?.Mae?.Id,
+                    PaiId = entity.Filiacao?.Pai?.Id,
+                    GeneroId = entity.Genero.Id,
+                    EscolaridadeId = entity.Escolaridade.Id,
+                    EtniaId = entity.Etnia.Id,
+                }
+            );
         }
+
+
+        public decimal GetPercentPersonWhitNameByRegion(string region, string name)
+        {
+            var razao = Connection.QueryFirstOrDefault<decimal>("SProc_Pessoa_GetPercentPersonWhitNameByRegion",
+            commandType: CommandType.StoredProcedure,
+            param: new { Regiao = region, Nome = name });
+            return razao;
+        }
+
 
         #region Map
         public Pessoa MapFromDB(dynamic obj)
@@ -108,6 +131,7 @@ namespace Censo.Infra.Data.Repository
                 Id = obj.Id,
                 Nome = obj.Nome,
                 SobreNome = obj.SobreNome,
+                Regiao = obj.Regiao,
                 Etnia = new Etnia { Id = obj.EtniaId, Descricao = obj.EtniaNome },
                 Genero = new Genero { Id = obj.GeneroId, Descricao = obj.GeneroNome },
                 Escolaridade = new Escolaridade { Id = obj.EscolaridadeId, Descricao = obj.EscolaridadeNome },

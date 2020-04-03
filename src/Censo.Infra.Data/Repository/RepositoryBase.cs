@@ -31,8 +31,7 @@ namespace Censo.Infra.Data.Repository
             Connection = new SqlConnection(connectionString);
         }
 
-        public IDbTransaction transaction { get; private set; }
-
+        //public IDbTransaction transaction { get; private set; }
 
 
         //public void SetTransaction(IDbTransaction transaction)

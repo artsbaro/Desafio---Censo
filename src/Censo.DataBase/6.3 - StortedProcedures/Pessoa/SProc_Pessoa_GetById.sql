@@ -8,6 +8,7 @@ SELECT
 		P.[Id] 
 		,P.[Nome] 
 		,P.[SobreNome] 
+		,P.Regiao
 		,P.[MaeId] 
 		,MAE.Nome as MaeNome
 		,P.[PaiId] 

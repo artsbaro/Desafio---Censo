@@ -11,5 +11,6 @@ namespace Censo.Domain.Filters
         public byte? GeneroId { get; set; }
         public byte? EscolaridadeId { get; set; }
         public byte? EtniaId { get; set; }
+        public string Regiao { get; set; }
     }
 }

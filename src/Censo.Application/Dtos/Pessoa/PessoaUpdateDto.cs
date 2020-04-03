@@ -1,15 +1,13 @@
-﻿using Censo.Application.Dtos.Escolaridade;
-using Censo.Application.Dtos.Etnia;
-using Censo.Application.Dtos.Filiacao;
-using Censo.Application.Dtos.Genero;
+﻿using Censo.Application.Dtos.Filiacao;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Censo.Application.Dtos.Pessoa
 {
-    public class PessoaDto
+    public class PessoaUpdateDto
     {
+        [Required(ErrorMessage = "Id inválido.")]
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Nome não preenchido.")]
@@ -21,18 +19,15 @@ namespace Censo.Application.Dtos.Pessoa
         [MinLength(3, ErrorMessage = "SobreNome deve ter mais que 3 caracteres")]
         [MaxLength(100, ErrorMessage = "SobreNome deve ter menos que 100 caracteres")]
         public string SobreNome { get; set; }
-        public GeneroDto Genero { get; set; }
-        public EscolaridadeDto Escolaridade { get; set; }
-        public EtniaDto Etnia { get; set; }
-        public FiliacaoDto Filiacao { get; set; }
-        public IEnumerable<PessoaDto> Filhos { get; set; }
+        public byte GeneroId { get; set; }
+        public byte EscolaridadeId { get; set; }
+        public byte EtniaId { get; set; }
+        public FiliacaoInsertDto Filiacao { get; set; }
+        public IEnumerable<PessoaInsertDto> Filhos { get; set; }
 
         [Required(ErrorMessage = "Região não preenchido.")]
         [MinLength(3, ErrorMessage = "Região deve ter mais que 3 caracteres")]
         [MaxLength(100, ErrorMessage = "Região deve ter menos que 100 caracteres")]
         public string Regiao { get; set; }
-
     }
 }
-
-

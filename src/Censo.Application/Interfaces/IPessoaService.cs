@@ -11,6 +11,8 @@ namespace Censo.Application.Interfaces
         void Remove(Guid id);
         PessoaDto FindById(Guid id);
         IEnumerable<PessoaDto> List(PessoaFilter filter);
-        void Update(PessoaDto entity);
+        void Update(PessoaUpdateDto entity);
+
+        string GetPercentPersonWhitNameByRegion(string region, string name);
     }
 }

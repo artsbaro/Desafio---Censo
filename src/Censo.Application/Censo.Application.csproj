@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Dtos\Http\" />
+    <Folder Include="FIlters\" />
   </ItemGroup>
 
 </Project>

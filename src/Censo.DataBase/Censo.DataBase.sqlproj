@@ -87,6 +87,9 @@
     <Build Include="6.3 - StortedProcedures\Genero\SProc_Genero_GetById.sql" />
     <Build Include="6.3 - StortedProcedures\Genero\SProc_Genero_Insert.sql" />
     <Build Include="6.3 - StortedProcedures\Genero\SProc_Genero_Update.sql" />
+    <Build Include="6.3 - StortedProcedures\Pessoa\SProc_Pessoa_GetByParentId.sql.sql" />
+    <Build Include="6.3 - StortedProcedures\Pessoa\SProc_Pessoa_Update.sql" />
+    <Build Include="6.3 - StortedProcedures\Pessoa\SProc_Pessoa_GetPercentPersonWhitNameByRegion.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Censo.DataBase.publish.xml" />
